@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDK Toucan Toco</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #3B625B, #57857D);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #ffffff;
+            color: #3B625B;
+            transition: width 0.3s;
+            padding-top: 20px;
+            border-radius: 0 20px 20px 0;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            position: relative; /* Important for absolute positioning inside */
+        }
+
+        .sidebar.collapsed {
+            width: 80px;
+        }
+
+        .sidebar .logo {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 2px solid #3B625B;
+        }
+
+        .sidebar .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .sidebar .nav-link {
+            color: #3B625B;
+            padding: 15px 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .sidebar .bi {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .sidebar.collapsed .nav-link-text {
+            display: none;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 30px;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 10px;
+            left: 250px;
+            z-index: 1000;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .sidebar.collapsed + .toggle-btn {
+            left: 80px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        p {
+            color: #ffffff;
+            font-size: 18px;
+            text-align: center;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <img src="https://media.licdn.com/dms/image/C560BAQFVqjc_gOCOKg/company-logo_200_200/0/1643133883287/toucan_toco_logo?e=2147483647&v=beta&t=mIhJ7esEBVO6JW4eZNpDam8m54TB6WRFt-JY4PKuFvA" alt="Logo Toucan Toco">
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="bi bi-house-door"></i>
+                    <span class="nav-link-text">Accueil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="graph1.html">
+                    <i class="bi bi-person"></i>
+                    <span class="nav-link-text">Extra variables</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="graph2.html">
+                    <i class="bi bi-gear"></i>
+                    <span class="nav-link-text">Send pdf report</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="graph3.html">
+                    <i class="bi bi-info-circle"></i>
+                    <span class="nav-link-text">Listener</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="graph4.html">
+                    <i class="bi bi-info-circle"></i>
+                    <span class="nav-link-text">W.I.P</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <i class="bi bi-list toggle-btn" id="toggle-btn"></i>
+
+    <div class="content">
+        <h1 id="content-title">Bienvenue sur notre site de démonstration du SDK Toucan Toco !</h1>
+        <p id="content-text">Naviguez à travers ces démonstrations pour voir comment chaque fonctionnalité peut être intégrée et utilisée dans vos propres projets. Nous espérons que vous trouverez ces démonstrations utiles et inspirantes pour vos développements futurs !
+
+N'hésitez pas à explorer, tester, et nous faire part de vos questions ou commentaires.</p>
+    </div>
+</body>
+</html>

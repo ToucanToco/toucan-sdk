@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affichage des Détails de Sélection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-left: 270px !important;
+            background: linear-gradient(135deg, #3B625B, #57857D);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+        }
+
+        .sidebar {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            height: 100%;
+            z-index: 1;
+            width: 250px;
+            background-color: #ffffff;
+            color: #3B625B;
+            transition: width 0.3s;
+            padding-top: 20px;
+            border-radius: 0 20px 20px 0;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            position: relative; /* Important for absolute positioning inside */
+        }
+
+        .sidebar.collapsed {
+            width: 80px;
+        }
+
+        .sidebar .logo {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 2px solid #3B625B;
+        }
+
+        .sidebar .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .sidebar .nav-link {
+            color: #3B625B;
+            padding: 15px 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .sidebar .bi {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .sidebar.collapsed .nav-link-text {
+            display: none;
+        }
+
+        .content {
+            width: 100%;
+            padding: 30px;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 10px;
+            left: 250px;
+            z-index: 1000;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .sidebar.collapsed + .toggle-btn {
+            left: 80px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <img src="https://media.licdn.com/dms/image/C560BAQFVqjc_gOCOKg/company-logo_200_200/0/1643133883287/toucan_toco_logo?e=2147483647&v=beta&t=mIhJ7esEBVO6JW4eZNpDam8m54TB6WRFt-JY4PKuFvA" alt="Logo Toucan Toco">
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="bi bi-house-door"></i>
+                    <span class="nav-link-text">Accueil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="graph1.html">
+                    <i class="bi bi-person"></i>
+                    <span class="nav-link-text">Extra variables</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="graph2.html">
+                    <i class="bi bi-gear"></i>
+                    <span class="nav-link-text">Send pdf report</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="graph3.html">
+                    <i class="bi bi-info-circle"></i>
+                    <span class="nav-link-text">Event Emitter System</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="graph4.html">
+                    <i class="bi bi-info-circle"></i>
+                    <span class="nav-link-text">W.I.P</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <i class="bi bi-list toggle-btn" id="toggle-btn"></i>
+
+    <div class="content">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Background with gradient */
+    .export_pdf_report {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: block;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+
+    .export_pdf_report h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .export_pdf_report .main-container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .export_pdf_report .menu-container {
+      background-color: rgba(248, 249, 250, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: #3B625B;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+
+    .export_pdf_report .embed-details-wrapper {
+      display: flex;
+      width: 100%;
+      min-height: 600px;
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      box-sizing: border-box;
+      flex-direction: column;
+
+
+    }
+
+    .export_pdf_report .embed-container {
+      flex: 3;
+      background-color: #ffffff;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 20px;
+      min-height: 400px;
+    }
+    .export_pdf_report .default-message {
+      font-size: 20px;
+      color: #888;
+      text-align: center;
+      padding: 40px;
+      background-color: #f9f9f9;
+      border: 2px dashed #ddd;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 90%;
+      box-sizing: border-box;
+      overflow: auto;
+      display: flex;
+      align-items: center;
+      justify-content : center;
+    }
+
+    .export_pdf_report .details-container {
+      flex: 2;
+      background-color: rgba(248, 249, 250, 0.9);
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: #3B625B;
+      overflow-y: auto;
+      border-radius: 10px;
+    }
+
+    .export_pdf_report .details-container h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #3B625B;
+      margin-bottom: 20px;
+    }
+
+    .export_pdf_report .details-container .section {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .export_pdf_report .details-container .section h5 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #3B625B;
+      margin-bottom: 10px;
+    }
+
+    .export_pdf_report .details-container .section p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .export_pdf_report .details-container .section pre {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      overflow-x: auto;
+    }
+
+    .export_pdf_report .details-container .section .icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+      font-size: 20px;
+      color: #3B625B;
+    }
+
+    /* Ajouter cette règle pour cacher le message par défaut */
+    .export_pdf_report #selection-details.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<div class="export_pdf_report">
+  <h1>Démonstration du Event Emitter System</h1>
+
+  <div class="main-container">
+    <div class="menu-container">
+      <label for="embed-id">Choisissez le type de subscribe :</label>
+      <select id="embed-id" class="form-control">
+        <option value="" disabled selected>Sélectionner un subscribe</option>
+        <option value="d9239ba4-08fc-42f3-87b6-1cda42ead4db">chart:selection</option>
+        <option value="0221f399-d286-4b56-ba75-354f38610a3c">chart:drill</option>
+      </select>
+    </div>
+
+    <div class="embed-details-wrapper">
+      <div id="embed-container" class="embed-container">
+        <div class="default-message">
+          <p>Veuillez sélectionner un type de souscription pour afficher l'embed ici.</p>
+        </div>
+      </div>
+
+      <div id="details-container" class="details-container">
+        <h2>Détails de la Sélection</h2>
+        <div id="selection-details" class="section">
+          <h5><span class="icon">ℹ️</span>Informations :</h5>
+          <p>Cliquez sur un élément du graphique pour voir les détails de la sélection.</p>
+        </div>
+        <div id="interpretation" class="section" style="display: none;"></div>
+        <div id="drill-details" class="section" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://toucan-customer-trial.toucantoco.com/scripts/tctc-sdk.js"></script>
+  <script>
+    let selectedId = '';
+
+    document.getElementById('embed-id').addEventListener('change', () => {
+      selectedId = document.getElementById('embed-id').value;
+
+      if (selectedId) {
+        // Réinitialiser les détails de sélection et les autres sections
+        resetDetails();
+
+        const embedScript = document.createElement('script');
+        embedScript.src = `https://toucan-customer-trial.toucantoco.com/scripts/embedLauncher.js?id=${selectedId}&token=_0XBPWQQ_1df71330-932c-42c0-b0c1-4c6e085dfd92`;
+        embedScript.async = true;
+        embedScript.type = 'text/javascript';
+        document.getElementById('embed-container').innerHTML = '';
+        document.getElementById('embed-container').appendChild(embedScript);
+
+        document.getElementById('embed-container').style.display = 'block';
+        document.getElementById('details-container').style.display = 'block';
+
+        init(selectedId);
+      }
+    });
+
+    function resetDetails() {
+      // Réinitialiser le message d'invite et cacher les autres sections
+      document.getElementById('selection-details').style.display = 'block';
+      document.getElementById('interpretation').style.display = 'none';
+      document.getElementById('drill-details').style.display = 'none';
+
+      // Optionnel : vous pouvez vider le contenu des sections si nécessaire
+      document.getElementById('selection-details').innerHTML = `
+        <h5><span class="icon">ℹ️</span>Informations :</h5>
+        <p>Cliquez sur un élément du graphique pour voir les détails de la sélection.</p>
+      `;
+      document.getElementById('interpretation').innerHTML = '';
+      document.getElementById('drill-details').innerHTML = '';
+    }
+
+    async function init(id) {
+      try {
+        const instance = await TcTcEmbed.initialize();
+        const embed = await instance.get(id);
+
+        // Abonnez-vous aux événements après le chargement complet
+        if (id === 'd9239ba4-08fc-42f3-87b6-1cda42ead4db') {
+          embed.subscribe('chart:selection', (payload) => {
+            console.log('Événement de sélection:', payload);
+            displaySelectionDetails(payload);
+            displayInterpretation(payload.eventData.dataRow);
+            document.getElementById('selection-details').style.display = 'block';
+            document.getElementById('interpretation').style.display = 'block';
+            document.getElementById('drill-details').style.display = 'none';
+          });
+        } else if (id === '0221f399-d286-4b56-ba75-354f38610a3c') {
+          embed.subscribe('chart:drill', (payload) => {
+            console.log('Événement de drill:', payload);
+            displayDrillDetails(payload);
+            document.getElementById('selection-details').style.display = 'none';
+            document.getElementById('interpretation').style.display = 'none';
+            document.getElementById('drill-details').style.display = 'block';
+          });
+        }
+      } catch (error) {
+        console.error('Erreur d\'initialisation:', error);
+      }
+    }
+
+    function displaySelectionDetails(payload) {
+  const eventInfo = payload.eventData || {};  // Données de l'événement
+  const contextInfo = payload.context || {};  // Contexte de l'événement
+
+  let output = '<h5><span class="icon">📋</span>Informations remontées :</h5>';  // Titre avec emoji
+  output += '<strong>Type d\'événement :</strong> chart:selection<br>';
+  output += '<strong>Type de sélection :</strong> ' + (eventInfo.dataLabel || 'N/A') + '<br>';
+
+  // JSON Data Row bien formaté
+  const dataRowFormatted = JSON.stringify(eventInfo.dataRow || {}, null, 2);  // Ajout d'une indentation pour lisibilité
+
+  // Mise en forme HTML pour afficher le JSON joliment
+  output += '<strong>Data Row :</strong><pre style="background-color: #f4f4f4; padding: 10px; border-radius: 8px;">' + syntaxHighlight(dataRowFormatted) + '</pre>';
+  output += '<strong>Data Label :</strong> ' + (eventInfo.dataLabel || 'N/A') + '<br>';
+  output += '<strong>Type de graphique :</strong> ' + (contextInfo.chartType || 'N/A') + '<br>';
+  output += '<strong>Embed ID :</strong> ' + (contextInfo.embedId || 'N/A') + '<br>';
+  output += '<strong>Story ID :</strong> ' + (contextInfo.storyId || 'N/A') + '<br>';
+  output += '<strong>Index du graphique :</strong> ' + (contextInfo.chartIndex || 'N/A') + '<br>';
+
+  if (eventInfo.drillInfo) {
+    output += '<strong>Drill Info :</strong> ' + JSON.stringify(eventInfo.drillInfo || {}, null, 2) + '<br>';
+  }
+
+  // Mettre à jour le contenu de l'élément 'selection-details'
+  document.getElementById('selection-details').innerHTML = output;
+}
+
+// Fonction pour mettre en évidence les parties du JSON
+function syntaxHighlight(json) {
+  if (typeof json != 'string') {
+    json = JSON.stringify(json, undefined, 2);
+  }
+  json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return json.replace(/("(\\u[\da-fA-F]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|\d+)/g, function (match) {
+    let cls = 'number';
+    if (/^"/.test(match)) {
+      if (/:$/.test(match)) {
+        cls = 'key';
+      } else {
+        cls = 'string';
+      }
+    } else if (/true|false/.test(match)) {
+      cls = 'boolean';
+    } else if (/null/.test(match)) {
+      cls = 'null';
+    }
+    return '<span class="' + cls + '">' + match + '</span>';
+  });
+}
+
+
+    function displayInterpretation(dataRow) {
+      if (!dataRow) return;
+
+      const { sales_step, __sum_price__ } = dataRow;
+
+      let interpretation = '';
+
+      if (sales_step && __sum_price__) {
+        interpretation = `Le montant total des ventes lors de l'étape <strong>${sales_step}</strong> est de <strong>${formatPrice(__sum_price__)}</strong>.`;
+      } else if (sales_step) {
+        interpretation = `L'étape de vente sélectionnée est <strong>${sales_step}</strong>.`;
+      } else if (__sum_price__) {
+        interpretation = `Le montant total des ventes est de <strong>${formatPrice(__sum_price__)}</strong>.`;
+      } else {
+        interpretation = `Aucune interprétation des données disponible.`;
+      }
+
+      document.getElementById('interpretation').innerHTML = `
+        <h5><span class="icon">📈</span>Interprétation :</h5>
+        <p>${interpretation}</p>
+      `;
+    }
+
+    function displayDrillDetails(payload) {
+  const drillInfo = payload.eventData ? payload.eventData.drillInfo : undefined;
+  const eventData = payload.eventData;
+  const eventInfo = payload.eventData;
+  const localContextInfo = payload.context
+
+
+  // Formater les JSON avec une indentation et un style lisible
+  const formattedDrillInfo = drillInfo ? JSON.stringify(drillInfo, null, 2) : 'Aucune information de drill disponible';
+  const formattedEventData = eventData ? JSON.stringify(eventData, null, 2) : 'Aucune donnée d\'événement disponible';
+
+  console.log('Informations de drill:', drillInfo);
+  console.log('Données de l\'événement:', eventData);
+
+  // Détails de la sélection
+  let output = '<h5><span class="icon">📋</span>Informations remontées :</h5>';
+  output += '<strong>Type d\'événement :</strong> chart:drill<br>';
+  output += '<strong>Type de sélection :</strong> ' + (eventInfo.dataLabel || 'N/A') + '<br>';
+
+  // JSON Data Row bien formaté
+  const dataRowFormatted = JSON.stringify(eventInfo.dataRow || {}, null, 2);  // Ajout d'une indentation pour lisibilité
+  output += '<strong>Data Row :</strong><pre style="background-color: #f4f4f4; padding: 10px; border-radius: 8px;">' + syntaxHighlight(dataRowFormatted) + '</pre>';
+
+  // Autres détails
+  const contextInfo = eventInfo.context || {};
+  output += '<strong>Data Label :</strong> ' + (eventInfo.dataLabel || 'N/A') + '<br>';
+  output += '<strong>Type de graphique :</strong> ' + (localContextInfo.chartType || 'N/A') + '<br>';
+  output += '<strong>Embed ID :</strong> ' + (localContextInfo.embedId || 'N/A') + '<br>';
+  output += '<strong>Story ID :</strong> ' + (localContextInfo.storyId || 'N/A') + '<br>';
+  output += '<strong>Index du graphique :</strong> ' + (localContextInfo.chartIndex || 'N/A') + '<br>';
+  output += '<strong>Détails du Drill :</strong><pre style="background-color: #f4f4f4; padding: 10px; border-radius: 8px;">' + syntaxHighlight(formattedDrillInfo) + '</pre>';
+
+  // Structure de l'affichage des détails
+  const drillDetails = `
+    <div class="section">
+      ${output}
+    </div>
+    <div class="section">
+      <h5><span class="icon">📈</span>Interprétation :</h5>
+      <p>${generateDrillInterpretation(eventData)}</p>
+    </div>
+  `;
+
+  // Mise à jour de l'interface avec les détails du drill
+  document.getElementById('drill-details').innerHTML = drillDetails;
+}
+
+    function generateDrillInterpretation(eventData) {
+      if (!eventData || !eventData.drillInfo || !eventData.drillInfo.children) {
+        console.log('Aucune interprétation disponible. Vérifiez la structure des données:', eventData);
+        return 'Aucune interprétation disponible.';
+      }
+
+      const drillInfo = eventData.drillInfo;
+      const children = drillInfo.children || [];
+      const totalSumPrice = children.reduce((sum, child) => sum + (child.__sum_price__ || 0), 0);
+
+      let interpretation = `Le total pour la sélection ${eventData.dataLabel || 'non spécifié'} est de <strong>${formatPrice(totalSumPrice)}</strong>.`;
+
+      if (children.length > 0) {
+        interpretation += '<br><br>Répartition des sous-catégories :<ul>';
+        children.forEach(child => {
+          interpretation += `<li><strong>${child.label || 'non spécifié'}</strong> : ${formatPrice(child.__sum_price__)}</li>`;
+        });
+        interpretation += '</ul>';
+      }
+
+      return interpretation;
+    }
+
+    function formatPrice(price) {
+      return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price);
+    }
+  </script>
+
+</div>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+  <style>
+    /* Importing the Montserrat font */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    /* Background with gradient */
+    .timeline-blc {
+        margin-top: 40px !important;
+      font-family: 'Montserrat', sans-serif; /* Police Montserrat */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Container for content */
+    .timeline-blc .container {
+      width: 100%;
+      padding: 20px;
+      background-color: #ffffff; /* Couleur de fond du conteneur */
+      border-radius: 20px; /* Coins arrondis du conteneur */
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Ombre plus prononcée */
+      overflow-y: auto; /* Ajoute le défilement vertical */
+    }
+
+    /* Title */
+    .timeline-blc .title {
+      font-size: 36px;
+      font-weight: 700; /* Bold */
+      color: #3B625B;
+      margin-bottom: 20px; /* Espacement sous le titre */
+      text-align: center; /* Centrer le texte */
+    }
+
+    /* Timeline */
+    .timeline-blc .timeline {
+      position: relative;
+      padding: 0;
+      list-style: none;
+    }
+
+    .timeline-blc .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      background: #3B625B; /* Couleur de la ligne de la timeline */
+      transform: translateX(-50%);
+    }
+
+    .timeline-blc .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 20px;
+      box-sizing: border-box;
+      transition: transform 0.3s;
+      cursor: pointer;
+      margin-bottom: 10px; /* Espacement entre les éléments */
+    }
+
+    .timeline-blc .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-blc .timeline-item:nth-child(even) {
+      left: 50%;
+      text-align: left;
+    }
+
+    .timeline-blc .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: -8px;
+      width: 16px;
+      height: 16px;
+      background: #3B625B; /* Couleur des points */
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      z-index: 1;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .timeline-blc .timeline-item:nth-child(even)::before {
+      left: -8px;
+      right: auto;
+    }
+
+    .timeline-blc .timeline-item-content {
+      padding: 20px;
+      background: #A7D2CD; /* Couleur de fond des éléments */
+      border-radius: 10px; /* Coins arrondis des éléments */
+      position: relative;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Ombre douce */
+      transition: background 0.3s, box-shadow 0.3s;
+      display: none; /* Caché par défaut */
+    }
+
+    .timeline-blc .timeline-item.active .timeline-item-content {
+      display: block; /* Afficher lorsqu'actif */
+    }
+
+    .timeline-blc .timeline-item-content h2 {
+      font-size: 24px;
+      font-weight: 700; /* Bold */
+      color: #3B625B; /* Couleur du titre */
+      margin: 0 0 10px; /* Espacement sous le titre */
+    }
+
+    .timeline-blc .timeline-item-content p {
+      font-size: 16px;
+      font-weight: 400;
+      color: #3B625B; /* Couleur du texte */
+      margin: 0;
+    }
+
+    .timeline-blc .timeline-item-content code {
+      display: block;
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+
+    .timeline-blc .timeline-item-content time {
+      display: block;
+      font-size: 14px;
+      color: #3B625B; /* Couleur de la date */
+      margin-top: 10px;
+    }
+
+    /* Hover effects */
+    .timeline-blc .timeline-item:hover {
+      transform: translateY(-10px);
+    }
+
+    .timeline-blc .timeline-item:hover::before {
+      background: #81B1BD; /* Couleur des points au survol */
+      transform: scale(1.2);
+    }
+
+    .timeline-blc .timeline-item:hover .timeline-item-content {
+      background: #81B1BD; /* Couleur de fond des éléments au survol */
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée au survol */
+    }
+
+    .timeline-blc .timeline-item:hover .timeline-item-content h2,
+    .timeline-blc .timeline-item:hover .timeline-item-content p,
+    .timeline-blc .timeline-item:hover .timeline-item-content code,
+    .timeline-blc .timeline-item:hover .timeline-item-content time {
+      color: #141414; /* Couleur du texte au survol */
+    }
+
+    /* Copy button styling */
+    .timeline-blc .copy-btn {
+      background-color: #3B625B; /* Couleur de fond du bouton */
+      color: #ffffff; /* Couleur du texte */
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .timeline-blc .copy-btn:hover {
+      background-color: #2a4a47; /* Couleur de fond du bouton au survol */
+    }
+  </style>
+<div class="timeline-blc">
+  <div class="container">
+    <h1 class="title">Mise en Place du Event Emitter System</h1>
+    <ul class="timeline">
+      <li class="timeline-item">
+        <div class="timeline-item-header" onclick="toggleContent(this)">
+          <h2>Ajouter le script du SDK</h2>
+        </div>
+        <div class="timeline-item-content">
+          <p>Incluez le script SDK dans votre page HTML pour permettre l'utilisation des fonctionnalités de Toucan Toco :</p>
+          <pre><code class="language-javascript" id="code1">
+            &#x3C;script src="https://toucan-customer-trial.toucantoco.com/scripts/tctc-sdk.js">&#x3C;/script>
+          </code></pre>
+          <button class="copy-btn" data-clipboard-target="#code1">Copier</button>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-item-header" onclick="toggleContent(this)">
+          <h2>Initialiser le SDK </h2>
+        </div>
+        <div class="timeline-item-content">
+          <p>Utilisez l'adminToken pour initialiser l'instance du SDK. La méthode est asynchrone, alors assurez-vous de la placer dans une fonction async.</p>
+          <pre><code class="language-javascript" id="code3">
+            const instance = await TcTcEmbed.initialize(adminToken);
+          </code></pre>
+          <button class="copy-btn" data-clipboard-target="#code3">Copier</button>
+        </div>
+      </li>
+      <li class="timeline-item">
+    <div class="timeline-item-header" onclick="toggleContent(this)">
+        <h2>Souscrire aux Événements</h2>
+    </div>
+    <div class="timeline-item-content">
+        <p>Initialisez l'embed et souscrivez aux événements <code>chart:selection</code> et <code>chart:drill</code> pour écouter les interactions de l'utilisateur.</p>
+        <pre><code class="language-javascript" id="code3">
+            const instance = await TcTcEmbed.initialize();
+            const embed = await instance.get('my_embed_id');
+
+            embed.subscribe('chart:selection', (eventData, context) => {
+                console.log('Sélection effectuée :', eventData);
+                console.log('Contexte :', context);
+                displaySelectionDetails(eventData, context);
+            });
+
+            embed.subscribe('chart:drill', (eventData, context) => {
+                console.log('Drill effectué :', eventData);
+                console.log('Contexte :', context);
+                displayDrillDetails(eventData, context);
+            });
+        </code></pre>
+        <button class="copy-btn" data-clipboard-target="#code3">Copier</button>
+    </div>
+</li>
+<li class="timeline-item">
+    <div class="timeline-item-header" onclick="toggleContent(this)">
+        <h2>Gérer les Événements</h2>
+    </div>
+    <div class="timeline-item-content">
+        <p>Récupérez les détails des événements et affichez-les dans l'interface utilisateur.</p>
+        <pre><code class="language-javascript" id="code4">
+            function displaySelectionDetails(eventData, context) {
+                const { dataRow, dataLabel, type } = eventData;
+                const { chartType, embedId, storyId } = context;
+
+                document.getElementById('selection-output').innerHTML = \`
+                    <h3>Détails de la Sélection</h3>
+                    <p>Type de Graphique : \${chartType}</p>
+                    <p>ID de l'Embed : \${embedId}</p>
+                    <p>Étiquette Sélectionnée : \${dataLabel}</p>
+                    <p>Données : \${JSON.stringify(dataRow)}</p>
+                \`;
+            }
+
+            function displayDrillDetails(eventData, context) {
+                const { drillInfo, children } = context;
+
+                document.getElementById('drill-output').innerHTML = \`
+                    <h3>Détails du Drill</h3>
+                    <p>Informations de Drill : \${JSON.stringify(drillInfo)}</p>
+                    <p>Données Enfant : \${JSON.stringify(children)}</p>
+                \`;
+            }
+        </code></pre>
+        <button class="copy-btn" data-clipboard-target="#code4">Copier</button>
+    </div>
+</li>
+<li class="timeline-item">
+  <div class="timeline-item-header" onclick="toggleContent(this)">
+    <h2>Pour en savoir plus 💡</h2>
+  </div>
+  <div class="timeline-item-content">
+    <p>Consultez le <a href="https://codepen.io/Jaouad-Ahraoui-the-bold/pen/dyxyGOP" target="_blank">CodePen </a> pour accéder à l'entièreté de la démonstration.
+    Vous pouvez également la documentation Toucan traitant du <a href="https://docs-v3.toucantoco.com/visualizations-and-layouts/embedding/embed-sdk#event-emitter-system" target="_blank">Event Emitter System</a> </p>
+  </div>
+</li>
+    </ul>
+  </div>
+
+  <!-- PrismJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <!-- Clipboard.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+  <script>
+    // Initialize Clipboard.js
+    var clipboard = new ClipboardJS('.copy-btn');
+
+    clipboard.on('success', function(e) {
+      alert('Code copié !');
+      e.clearSelection();
+    });
+
+    clipboard.on('error', function(e) {
+      alert('Échec de la copie.');
+    });
+
+    function toggleContent(element) {
+      const content = element.nextElementSibling;
+      const isActive = content.style.display === 'block';
+
+      // Hide all other content
+      document.querySelectorAll('.timeline-item-content').forEach(function(item) {
+        item.style.display = 'none';
+      });
+
+      // Toggle the clicked content
+      content.style.display = isActive ? 'none' : 'block';
+
+      // Add or remove active class
+      document.querySelectorAll('.timeline-item').forEach(function(item) {
+        item.classList.remove('active');
+      });
+      if (!isActive) {
+        element.parentElement.classList.add('active');
+      }
+    }
+  </script>
+</div>
+
+    </div>
+</body>
+</html>
